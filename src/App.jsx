@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import About from './components/About'
+import Experience from './components/Experience'
 import Achievements from './components/Achievements'
 import Stats from './components/Stats'
 import Projects from './components/Projects'
@@ -27,6 +28,7 @@ function App() {
         <Hero github={github} leetcode={leetcode} loading={loading} />
         <Marquee items={PROFILE.skills} />
         <About github={github} leetcode={leetcode} />
+        <Experience />
         <Achievements />
         <Stats
           github={github}

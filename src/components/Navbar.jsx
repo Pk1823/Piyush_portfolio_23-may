@@ -3,6 +3,7 @@ import { PROFILE, PROFILE_IMAGE } from '../data/profile'
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
   { id: 'achievements', label: 'Achievements' },
   { id: 'stats', label: 'Stats' },
   { id: 'projects', label: 'Projects' },

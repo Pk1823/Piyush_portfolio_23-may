@@ -62,7 +62,7 @@ export default function About({ github, leetcode }) {
                   <span className="about__meta-label">LinkedIn</span>
                 </div>
                 <div>
-                  <span className="about__meta-value">{PROFILE.linkedin.followers.toLocaleString()}</span>
+                  <span className="about__meta-value">{PROFILE.linkedin.followers.toLocaleString()}+</span>
                   <span className="about__meta-label">Followers</span>
                 </div>
               </div>

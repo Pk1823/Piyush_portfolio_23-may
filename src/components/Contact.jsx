@@ -4,7 +4,7 @@ const PLATFORMS = [
   {
     label: 'LinkedIn',
     value: 'piyush-k-4302ba226',
-    desc: `${PROFILE.linkedin.followers.toLocaleString()} followers · ${PROFILE.linkedin.connections}+ connections`,
+    desc: `${PROFILE.linkedin.followers.toLocaleString()}+ followers · ${PROFILE.linkedin.connections}+ connections`,
     primary: true,
   },
   {
