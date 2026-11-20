@@ -251,3 +251,4 @@ export const FEATURED_PROJECTS = [
 ]
 
 export const PROFILE_IMAGE = '/images/profile.png'
+export const HERO_IMAGE = '/images/piyush-aws.jpg'
