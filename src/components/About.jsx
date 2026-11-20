@@ -1,87 +1,88 @@
-import { PROFILE, PROFILE_IMAGE } from '../data/profile'
+import { PROFILE, ACHIEVEMENTS } from '../data/profile'
+import { LINKS } from '../data/links'
 
-export default function About({ github, leetcode }) {
-  const lcTags = [
-    ...(leetcode?.tagProblemCounts?.fundamental ?? []),
-    ...(leetcode?.tagProblemCounts?.intermediate ?? []),
-  ]
-    .sort((a, b) => b.problemsSolved - a.problemsSolved)
-    .slice(0, 6)
-    .map((t) => t.tagName)
+export default function About() {
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
-  const skills = [...new Set([...PROFILE.skills, ...lcTags])]
+  const milestones = ACHIEVEMENTS.linkedinCerts.slice(0, 5)
 
   return (
-    <section id="about" className="section about">
-      <div className="section__header">
-        <span className="section__tag">About Me</span>
-        <h2>Building skills, shipping projects, growing every day</h2>
-      </div>
+    <section id="about" className="section">
+      <div className="container duo">
+        {/* Left Column: About Me */}
+        <div className="duo__about card">
+          <span className="eyebrow">About me</span>
+          <h2 className="h2">Developer by curiosity, community builder by choice.</h2>
 
-      <div className="about__layout">
-        <div className="about__profile-card glass">
-          <img
-            src={PROFILE_IMAGE}
-            alt={PROFILE.name}
-            className="about__profile-img"
-          />
-          <div className="about__profile-info">
-            <h3>{PROFILE.name}</h3>
-            <p className="about__profile-role">{PROFILE.title}</p>
-            <p className="about__profile-loc">{PROFILE.location}</p>
-            <button type="button" className="about__linkedin-btn" onClick={() => document.getElementById('achievements')?.scrollIntoView({ behavior: 'smooth' })}>
-              View Achievements →
-            </button>
+          <p>
+            Currently in my 3rd year pursuing <strong>B.Tech in Information Technology</strong> at AKTU / Samrat Ashok Rajkiya Engineering College (SAREC Mirzapur).
+          </p>
+
+          <p>
+            As an <strong>AWS Global University Program Campus Ambassador</strong> and Founder of <strong>TnCC (Tech &amp; Coding Club)</strong>, I am passionate about bridging the gap between academic theory and practical software engineering, running student bootcamps, and collaborating on high-impact projects.
+          </p>
+
+          <p>
+            Strong command of <strong>Data Structures &amp; Algorithms in C++</strong>, active on LeetCode and Codeforces, with deep practical interest in <strong>Web Development, Generative AI, and Cloud Architecture</strong>.
+          </p>
+
+          <div className="tags" style={{ marginTop: '8px' }}>
+            {PROFILE.skills.slice(0, 9).map((s) => (
+              <span key={s} className="tag">{s}</span>
+            ))}
           </div>
+
+          <a
+            href="#contact"
+            className="link-arrow"
+            onClick={(e) => { e.preventDefault(); scrollTo('contact') }}
+            style={{ marginTop: '16px' }}
+          >
+            Let&apos;s build together <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
 
-        <div className="about__content">
-          <div className="about__card glass">
-            {PROFILE.bio.map((paragraph) => (
-              <p key={paragraph.slice(0, 30)}>{paragraph}</p>
-            ))}
-
-            <div className="about__highlights">
-              {PROFILE.highlights.map((h) => (
-                <div key={h.label} className="about__highlight">
-                  <span className="about__highlight-label">{h.label}</span>
-                  <span className="about__highlight-value">{h.value}</span>
-                  <span className="about__highlight-sub">{h.sub}</span>
-                </div>
-              ))}
+        {/* Right Column: Milestones */}
+        <div className="duo__ach">
+          <div className="section-head" style={{ marginBottom: '20px' }}>
+            <div className="section-head__title">
+              <span className="eyebrow eyebrow--lime">Milestones so far</span>
+              <h2 className="h2" style={{ fontSize: 'clamp(1.6rem, 3.2vw, 2.4rem)' }}>Verified accolades</h2>
             </div>
-
-            {github && (
-              <div className="about__meta">
-                <div>
-                  <span className="about__meta-value">{github.public_repos}</span>
-                  <span className="about__meta-label">Repos</span>
-                </div>
-                <div>
-                  <span className="about__meta-value">{PROFILE.linkedin.connections}+</span>
-                  <span className="about__meta-label">LinkedIn</span>
-                </div>
-                <div>
-                  <span className="about__meta-value">{PROFILE.linkedin.followers.toLocaleString()}+</span>
-                  <span className="about__meta-label">Followers</span>
-                </div>
-              </div>
-            )}
+            <a
+              href="#achievements"
+              className="btn btn--sm"
+              onClick={(e) => { e.preventDefault(); scrollTo('achievements') }}
+            >
+              View all
+            </a>
           </div>
 
-          <div className="about__skills glass">
-            <h3>Tech Stack &amp; Skills</h3>
-            <div className="about__tags">
-              {skills.map((skill) => (
-                <span key={skill} className="tag">{skill}</span>
-              ))}
-            </div>
-            {leetcode?.languageProblemCount?.length > 0 && (
-              <p className="about__lang">
-                LeetCode primary language:{' '}
-                <strong>{leetcode.languageProblemCount[0].languageName}</strong>
-              </p>
-            )}
+          <div className="ach-list">
+            {milestones.map((item) => (
+              <article key={item.id} className="ach-item">
+                <div className="ach-item__icon">
+                  🏆
+                </div>
+                <div className="ach-item__content">
+                  <div className="ach-item__top">
+                    <span className="ach-item__issuer">{item.issuer}</span>
+                    <span className="ach-item__date">{item.date}</span>
+                  </div>
+                  <h4 className="ach-item__title">{item.title}</h4>
+                  <p className="ach-item__desc">{item.description}</p>
+                  {item.image && (
+                    <div className="ach-item__thumb">
+                      <a href={item.image} target="_blank" rel="noopener noreferrer">
+                        <img src={item.image} alt={item.title} loading="lazy" />
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>

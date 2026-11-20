@@ -2,38 +2,43 @@ import { EXPERIENCES } from '../data/profile'
 
 export default function Experience() {
   return (
-    <section id="experience" className="section experience">
-      <div className="section__header">
-        <span className="section__tag">Experience</span>
-        <h2>Leadership &amp; Campus Experience</h2>
-        <p className="section__sub">
-          Positions of responsibility, ambassador programs &amp; hackathon organization
-        </p>
-      </div>
+    <section id="experience" className="section section--mist">
+      <div className="container">
+        <div className="section-head">
+          <div className="section-head__title">
+            <span className="eyebrow">Positions of responsibility</span>
+            <h2 className="h2">Leadership &amp; Experience</h2>
+          </div>
+          <span className="label muted">Campus, Hackathons &amp; Community</span>
+        </div>
 
-      <div className="experience__grid">
-        {EXPERIENCES.map((exp) => (
-          <article key={exp.id} className="experience-card glass">
-            <div className="experience-card__top">
-              <span className="experience-card__badge">{exp.type}</span>
-              <span className="experience-card__date mono">{exp.period}</span>
-            </div>
-            <h3 className="experience-card__title">{exp.title}</h3>
-            <p className="experience-card__org">{exp.organization}</p>
-            <p className="experience-card__desc">{exp.description}</p>
-            {exp.tags && (
-              <div className="experience-card__tags">
-                {exp.tags.map((tag) => (
-                  <span key={tag} className="tag tag--sm">
-                    {tag}
-                  </span>
-                ))}
+        <div className="exp-grid">
+          {EXPERIENCES.map((exp) => (
+            <article key={exp.id} className="exp-card">
+              <div className="exp-card__top">
+                <span className="eyebrow eyebrow--lime" style={{ fontSize: '0.68rem', padding: '4px 8px' }}>
+                  {exp.type}
+                </span>
+                <span className="label muted" style={{ fontSize: '0.75rem' }}>
+                  {exp.period}
+                </span>
               </div>
-            )}
-          </article>
-        ))}
+
+              <h3 className="exp-card__role">{exp.title}</h3>
+              <p className="exp-card__org">{exp.organization}</p>
+              <p className="exp-card__desc">{exp.description}</p>
+
+              {exp.tags && (
+                <div className="tags" style={{ marginTop: 'auto' }}>
+                  {exp.tags.map((tag) => (
+                    <span key={tag} className="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
-
