@@ -1,17 +1,21 @@
 import { LINKS } from '../data/links'
 
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="footer">
-      <p>
-        Designed &amp; built by <strong>Piyush Kushwaha</strong> · {year}
-      </p>
-      <div className="footer__links">
-        <a href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
-        <a href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href={LINKS.leetcode} target="_blank" rel="noreferrer">LeetCode</a>
+    <footer className="site-footer">
+      <div className="container site-footer__inner">
+        <p className="site-footer__copy">
+          &copy; {currentYear} Piyush Kushwaha. Built in the open with React &amp; Vite.
+        </p>
+
+        <div className="site-footer__links">
+          <a href={LINKS.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn (5K+)</a>
+          <a href={LINKS.leetcode} target="_blank" rel="noopener noreferrer">LeetCode</a>
+          <a href={LINKS.codeforces} target="_blank" rel="noopener noreferrer">Codeforces</a>
+        </div>
       </div>
     </footer>
   )

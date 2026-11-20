@@ -1,76 +1,46 @@
-import { PROFILE, PROFILE_IMAGE } from '../data/profile'
-
-const PLATFORMS = [
-  {
-    label: 'LinkedIn',
-    value: 'piyush-k-4302ba226',
-    desc: `${PROFILE.linkedin.followers.toLocaleString()}+ followers · ${PROFILE.linkedin.connections}+ connections`,
-    primary: true,
-  },
-  {
-    label: 'GitHub',
-    value: 'Pk1823',
-    desc: 'Repositories & open source contributions',
-  },
-  {
-    label: 'LeetCode',
-    value: 'pk2428',
-    desc: 'DSA practice & problem solving',
-  },
-  {
-    label: 'Codeforces',
-    value: 'contri25',
-    desc: 'Competitive programming contests',
-  },
-]
+import { PROFILE } from '../data/profile'
+import { LINKS } from '../data/links'
 
 export default function Contact() {
-  const copyHandle = (value) => {
-    navigator.clipboard?.writeText(value)
-  }
-
   return (
-    <section id="contact" className="section contact">
-      <div className="contact__wrapper glass">
-        <div className="contact__top">
-          <img src={PROFILE_IMAGE} alt={PROFILE.name} className="contact__avatar" />
-          <div className="section__header section__header--center">
-            <span className="section__tag">Contact</span>
-            <h2>Let&apos;s build something together</h2>
-            <p className="section__sub">
-              3rd-year BTech IT student at AKTU — open for collaboration, internships, and
-              software development opportunities. Based in {PROFILE.location}.
-            </p>
-          </div>
+    <section id="contact" className="connect-band grid-paper--violet">
+      <div className="container connect-band__inner">
+        <div>
+          <p className="label connect-band__label">
+            Open to internships, opportunities &amp; collaborations
+          </p>
+          <h2 className="connect-band__title">
+            Let&apos;s build something
+            <br />
+            amazing together.
+          </h2>
         </div>
 
-        <div className="contact__grid">
-          {PLATFORMS.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              className={`contact__card${item.primary ? ' contact__card--primary' : ''}`}
-              onClick={() => copyHandle(item.value)}
-              title={`Copy ${item.label} handle`}
-            >
-              <span className="contact__label">{item.label}</span>
-              <span className="contact__value mono">{item.value}</span>
-              <span className="contact__desc">{item.desc}</span>
-              <span className="contact__copy">Click to copy</span>
-            </button>
-          ))}
+        <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', zIndex: 2 }}>
+          <a
+            href={LINKS.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--lime"
+          >
+            Connect on LinkedIn <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a
+            href="mailto:recmit2024@gmail.com"
+            className="btn btn--sunbeam"
+          >
+            Send Email ✉️
+          </a>
         </div>
 
-        <p className="contact__note">
-          All stats &amp; achievements are shown on this portfolio — scroll to{' '}
-          <button type="button" className="contact__inline-link" onClick={() => document.getElementById('stats')?.scrollIntoView({ behavior: 'smooth' })}>
-            Stats
-          </button>{' '}
-          or{' '}
-          <button type="button" className="contact__inline-link" onClick={() => document.getElementById('achievements')?.scrollIntoView({ behavior: 'smooth' })}>
-            Achievements
-          </button>
-        </p>
+        {/* Neobrutalist geometric burst icon */}
+        <svg
+          className="connect-band__burst"
+          viewBox="0 0 100 100"
+          aria-hidden="true"
+        >
+          <path d="M50 0l9 22 21-12-6 24 24 3-19 15 19 15-24 3 6 24-21-12-9 22-9-22-21 12 6-24-24-3 19-15L2 37l24-3-6-24 21 12z" />
+        </svg>
       </div>
     </section>
   )
